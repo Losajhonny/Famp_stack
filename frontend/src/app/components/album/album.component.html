@@ -1,0 +1,46 @@
+<div class="bg-light">
+  <app-menuuser></app-menuuser>
+
+  <main>
+    <section class="jumbotron text-center my-5">
+      <div class="container">
+        <h1 class="jumbotron-heading">Libros</h1>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="messageOk != null">
+        <strong>{{messageOk}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="cerrarAlert1()"></button>
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="messageErr != null">
+        <strong>{{messageErr}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="cerrarAlert2()"></button>
+      </div>
+      <div class="py-3">
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" *ngFor="let libro of libros; let i = index">
+            <div class="card mb-4 box-shadow">
+              <img src="{{libro.imagen || no_disponible}}" class="card-img-top" alt="..." height="250" width="100">
+              <div class="card-body">
+                <h5 class="card-title">{{libro.nombre}}</h5>
+                <p class="card-text">{{libro.descripcion}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="badge bg-secondary text-wrap fs-6">
+                    Precio: Q{{libro.precio}}
+                  </div>
+                  <div class="btn-group">
+                    <button type="button" class="me-2 btn btn-outline-primary" (click)="editar(i)">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="eliminar(i)">Eliminar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
